@@ -68,7 +68,7 @@ export default function SureSorgulamaPage() {
             </ul>
 
             <a
-              href="https://discord.gg/AceHub"
+              href="https://discord.gg/Pq9MhPE7ak"
               target="_blank"
               rel="noreferrer"
               className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-white/10 px-5 py-3 text-sm font-semibold ring-1 ring-white/15 hover:bg-white/15"

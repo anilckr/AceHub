@@ -52,7 +52,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://discord.gg/AceHub"
+            href="https://discord.gg/Pq9MhPE7ak"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
