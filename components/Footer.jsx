@@ -47,7 +47,6 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-slate-400 md:flex-row md:items-center md:justify-between">
           <span>© {year} AceHub. Tüm hakları saklıdır.</span>
-          <span>Bu proje Next.js + Tailwind ile hazırlanmıştır.</span>
         </div>
       </div>
     </footer>
