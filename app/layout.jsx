@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Script from "next/script";
+import Providers from "./providers";
 
 export const metadata = {
   title: "AceHub",
@@ -13,11 +14,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <body className="min-h-screen bg-slate-950 text-white">
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
 
-        {/* Start of Tawk.to Script */}
+        {/* Tawk.to Live Chat */}
         <Script
           id="tawk-to"
           strategy="afterInteractive"
@@ -35,7 +38,6 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        {/* End of Tawk.to Script */}
       </body>
     </html>
   );
