@@ -1,38 +1,115 @@
 "use client";
 
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import { useMemo, useState } from "react";
+
+const nav = [
+  { label: "Ana Sayfa", href: "/" },
+  { label: "Ürünler", href: "/urunler" },
+  { label: "Hakkımızda", href: "/hakkimizda" },
+  { label: "Referanslar", href: "/referanslar" },
+  { label: "Süre Sorgulama", href: "/sure-sorgulama" },
+  { label: "S.S.S.", href: "/sss" },
+];
+
+function cls(...a) {
+  return a.filter(Boolean).join(" ");
+}
 
 export default function Navbar() {
-  const { data } = useSession();
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  const activeHref = useMemo(() => {
+    if (!pathname) return "/";
+    return pathname === "/" ? "/" : pathname.replace(/\/$/, "");
+  }, [pathname]);
 
   return (
-    <header className="border-b border-neutral-800">
-      <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="font-semibold tracking-wide">AceHub</Link>
-        <nav className="flex items-center gap-4 text-sm">
-          <Link href="/urunler" className="opacity-90 hover:opacity-100">Ürünler</Link>
-          <Link href="/sure-sorgulama" className="opacity-90 hover:opacity-100">Süre Sorgulama</Link>
-          <Link href="/hakkimizda" className="opacity-90 hover:opacity-100">Hakkımızda</Link>
-          <Link href="/sss" className="opacity-90 hover:opacity-100">S.S.S</Link>
-          {data?.user ? (
-            <>
-              {data.user.role === "ADMIN" ? (
-                <Link href="/admin" className="opacity-90 hover:opacity-100">Admin</Link>
-              ) : null}
-              <button
-                onClick={() => signOut({ callbackUrl: "/" })}
-                className="rounded-lg border border-neutral-700 px-3 py-1 hover:border-neutral-500"
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+
+        {/* LOGO (DISCORD IMAGE LINK) */}
+        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+          <img
+            src="DISCORD_IMAGE_LINKINI_BURAYA_YAPISTIR"
+            alt="AceHub"
+            className="h-8 w-8 object-contain select-none"
+            draggable="false"
+          />
+
+          <span className="text-base font-semibold tracking-tight">AceHub</span>
+        </Link>
+
+        {/* DESKTOP NAV */}
+        <nav className="hidden items-center gap-6 text-sm text-slate-200 md:flex">
+          {nav.map((item) => {
+            const isActive =
+              item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cls("hover:text-white", isActive && "text-white")}
               >
-                Çıkış
-              </button>
-            </>
-          ) : (
-            <Link href="/login" className="rounded-lg border border-neutral-700 px-3 py-1 hover:border-neutral-500">
-              Giriş
-            </Link>
-          )}
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
+
+        {/* ACTIONS */}
+        <div className="flex items-center gap-2">
+          <a
+            href="https://discord.gg/Pq9MhPE7ak"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+          >
+            Discord’a Katıl
+          </a>
+
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex items-center justify-center rounded-xl bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/15 md:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+          >
+            Menü
+          </button>
+        </div>
+      </div>
+
+      {/* MOBILE MENU */}
+      <div
+        id="mobile-menu"
+        className={cls(
+          "border-t border-white/10 bg-slate-950/90 md:hidden",
+          !open && "hidden"
+        )}
+      >
+        <div className="mx-auto max-w-6xl px-4 py-3">
+          <div className="grid gap-2 text-sm text-slate-200">
+            {nav.map((item) => {
+              const isActive =
+                item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cls(
+                    "rounded-xl px-3 py-2 hover:bg-white/10 hover:text-white",
+                    isActive && "bg-white/10 text-white"
+                  )}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </header>
   );
