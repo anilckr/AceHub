@@ -17,14 +17,8 @@ function cls(...a) {
   return a.filter(Boolean).join(" ");
 }
 
-/**
- * ÖNEMLİ:
- * Discord attachment linkindeki ?ex=...&is=...&hm=... kısmı süreli olabiliyor.
- * Bu yüzden kalıcı hale getirmek için query parametrelerini kaldırdık.
- * Eğer bu link yine sorun çıkarırsa en sağlam çözüm: logoyu /public içine koyup "/acehub-logo.png" yapmak.
- */
 const LOGO_URL =
-  "https://cdn.discordapp.com/attachments/1211412024987357294/1459922145210531991/image.png";
+  "https://cdn.discordapp.com/attachments/1355952161007341598/1457318347564912752/ChatGPT_Image_4_Oca_2026_01_48_19.png?ex=6964cb79&is=696379f9&hm=76fd4a9cf4954a196de0143cf8b475b1e1665dd50137f8ed097a0564d71c435a&"; // BURAYA KENDİ DİREKT LOGO LİNKİNİ KOY
 
 function AceHubIcon() {
   return (
@@ -38,14 +32,7 @@ function AceHubIcon() {
         role="img"
       >
         <defs>
-          <linearGradient
-            id="acehubGrad"
-            x1="10"
-            y1="8"
-            x2="54"
-            y2="56"
-            gradientUnits="userSpaceOnUse"
-          >
+          <linearGradient id="acehubGrad" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
             <stop stopColor="#6D5EF6" />
             <stop offset="1" stopColor="#41E0B9" />
           </linearGradient>
@@ -82,25 +69,15 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link
-          href="/"
-          className="flex items-center gap-2"
-          onClick={() => setOpen(false)}
-        >
+        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
           {logoOk ? (
-            <div className="h-9 w-9 overflow-hidden rounded-xl ring-1 ring-white/10 bg-white/5 shrink-0">
-              <img
-                src={LOGO_URL}
-                alt="AceHub"
-                className="h-full w-full object-cover select-none"
-                draggable="false"
-                loading="eager"
-                decoding="async"
-                referrerPolicy="no-referrer"
-                crossOrigin="anonymous"
-                onError={() => setLogoOk(false)}
-              />
-            </div>
+            <img
+              src={LOGO_URL}
+              alt="AceHub"
+              className="h-9 w-9 rounded-xl object-contain select-none ring-1 ring-white/10 bg-white/5"
+              draggable="false"
+              onError={() => setLogoOk(false)}
+            />
           ) : (
             <AceHubIcon />
           )}
@@ -110,11 +87,7 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-6 text-sm text-slate-200 md:flex">
           {nav.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? activeHref === "/"
-                : activeHref.startsWith(item.href);
-
+            const isActive = item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
             return (
               <Link
                 key={item.href}
@@ -150,19 +123,12 @@ export default function Navbar() {
 
       <div
         id="mobile-menu"
-        className={cls(
-          "border-t border-white/10 bg-slate-950/90 md:hidden",
-          !open && "hidden"
-        )}
+        className={cls("border-t border-white/10 bg-slate-950/90 md:hidden", !open && "hidden")}
       >
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="grid gap-2 text-sm text-slate-200">
             {nav.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? activeHref === "/"
-                  : activeHref.startsWith(item.href);
-
+              const isActive = item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
