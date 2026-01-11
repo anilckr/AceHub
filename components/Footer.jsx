@@ -38,7 +38,7 @@ export default function Footer() {
           <h4 className="text-sm font-semibold text-white">Topluluk</h4>
           <div className="grid gap-2 text-sm text-slate-300">
             <a className="hover:text-white" href="https://discord.gg/Pq9MhPE7ak" target="_blank" rel="noreferrer">Discord</a>
-            <a className="hover:text-white" href="https://instagram.com/acehubcode" aria-disabled="true">Instagram (ekle)</a>
+            <a className="hover:text-white" href="https://instagram.com/acehubcode" aria-disabled="true">Instagram</a>
             <a className="hover:text-white" href="#" aria-disabled="true">X (ekle)</a>
           </div>
         </div>
