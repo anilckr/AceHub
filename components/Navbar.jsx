@@ -20,24 +20,38 @@ function cls(...a) {
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [logoOk, setLogoOk] = useState(true);
 
   const activeHref = useMemo(() => {
     if (!pathname) return "/";
     return pathname === "/" ? "/" : pathname.replace(/\/$/, "");
   }, [pathname]);
 
+  // Basit cache-bust (deploy sonrası Vercel eski asset’i tutarsa diye)
+  // İstersen kaldırabilirsin ama prod’da işe yarıyor.
+  const logoSrc = "/logo.png?v=1";
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-
-        {/* LOGO (DISCORD IMAGE LINK) */}
+        {/* LOGO */}
         <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <img
-            src="DISCORD_IMAGE_LINKINI_BURAYA_YAPISTIR"
-            alt="AceHub"
-            className="h-8 w-8 object-contain select-none"
-            draggable="false"
-          />
+          {logoOk ? (
+            <img
+              src={logoSrc}
+              alt="AceHub"
+              className="h-8 w-8 object-contain select-none"
+              draggable="false"
+              onError={() => setLogoOk(false)}
+            />
+          ) : (
+            <div
+              className="grid h-8 w-8 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15"
+              aria-label="AceHub"
+            >
+              <span className="text-xs font-semibold text-white">AH</span>
+            </div>
+          )}
 
           <span className="text-base font-semibold tracking-tight">AceHub</span>
         </Link>
@@ -45,14 +59,9 @@ export default function Navbar() {
         {/* DESKTOP NAV */}
         <nav className="hidden items-center gap-6 text-sm text-slate-200 md:flex">
           {nav.map((item) => {
-            const isActive =
-              item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
+            const isActive = item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cls("hover:text-white", isActive && "text-white")}
-              >
+              <Link key={item.href} href={item.href} className={cls("hover:text-white", isActive && "text-white")}>
                 {item.label}
               </Link>
             );
@@ -82,18 +91,11 @@ export default function Navbar() {
       </div>
 
       {/* MOBILE MENU */}
-      <div
-        id="mobile-menu"
-        className={cls(
-          "border-t border-white/10 bg-slate-950/90 md:hidden",
-          !open && "hidden"
-        )}
-      >
+      <div id="mobile-menu" className={cls("border-t border-white/10 bg-slate-950/90 md:hidden", !open && "hidden")}>
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="grid gap-2 text-sm text-slate-200">
             {nav.map((item) => {
-              const isActive =
-                item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
+              const isActive = item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
