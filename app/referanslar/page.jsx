@@ -1,6 +1,6 @@
 export default function ReferanslarPage() {
   const reviews = [
-    { name: "Emre", text: "Kurulum süreci netti. Özellikle log ve ticket akışı çok iyi.", server: "AceHub Community" },
+    { name: "z4xanil", text: "Kurulum süreci netti. Özellikle log ve ticket akışı çok iyi.", server: "AceHub Community" },
     { name: "Mert", text: "Anti-raid ayarları sayesinde spam ve raid problemi azaldı.", server: "NightShift TR" },
     { name: "Ece", text: "Paket içeriği anlaşılır. Destek ekibi hızlı dönüş yaptı.", server: "Aurora Hub" },
     { name: "Kerem", text: "Roller/kanallar şablonları işimi kolaylaştırdı.", server: "PixelTown" },
