@@ -18,7 +18,7 @@ function cls(...a) {
 }
 
 const LOGO_URL =
-  "https://cdn.discordapp.com/attachments/1355952161007341598/1457318347564912752/ChatGPT_Image_4_Oca_2026_01_48_19.png?ex=6964cb79&is=696379f9&hm=76fd4a9cf4954a196de0143cf8b475b1e1665dd50137f8ed097a0564d71c435a&"; // BURAYA KENDİ DİREKT LOGO LİNKİNİ KOY
+  "https://cdn.discordapp.com/attachments/1211412024987357294/1459922145210531991/image.png?ex=696509f3&is=6963b873&hm=04b5b799dd650e808862f283e2de2b904daf204b6a9ffcf77f1e068cf7beb480&"; // BURAYA KENDİ DİREKT LOGO LİNKİNİ KOY
 
 function AceHubIcon() {
   return (
