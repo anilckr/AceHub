@@ -17,6 +17,45 @@ function cls(...a) {
   return a.filter(Boolean).join(" ");
 }
 
+const LOGO_URL =
+  "https://cdn.discordapp.com/attachments/1355952161007341598/1457318347564912752/ChatGPT_Image_4_Oca_2026_01_48_19.png?ex=6964cb79&is=696379f9&hm=76fd4a9cf4954a196de0143cf8b475b1e1665dd50137f8ed097a0564d71c435a&"; // BURAYA KENDİ DİREKT LOGO LİNKİNİ KOY
+
+function AceHubIcon() {
+  return (
+    <div className="grid h-9 w-9 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
+      <svg
+        viewBox="0 0 64 64"
+        className="h-7 w-7"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="AceHub"
+        role="img"
+      >
+        <defs>
+          <linearGradient id="acehubGrad" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#6D5EF6" />
+            <stop offset="1" stopColor="#41E0B9" />
+          </linearGradient>
+        </defs>
+
+        <path
+          d="M24.8 13.6c2.3-1.3 5.1-1.3 7.4 0l18.2 10.5c2.3 1.3 3.7 3.7 3.7 6.4v2.9c0 2.7-1.4 5.1-3.7 6.4L32.2 50.7c-2.3 1.3-5.1 1.3-7.4 0L6.6 40.2C4.3 38.9 2.9 36.5 2.9 33.8v-2.9c0-2.7 1.4-5.1 3.7-6.4l18.2-10.5z"
+          stroke="url(#acehubGrad)"
+          strokeWidth="6.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M37.5 46.5l7.6-4.3"
+          stroke="url(#acehubGrad)"
+          strokeWidth="6.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
+  );
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -27,48 +66,40 @@ export default function Navbar() {
     return pathname === "/" ? "/" : pathname.replace(/\/$/, "");
   }, [pathname]);
 
-  // Basit cache-bust (deploy sonrası Vercel eski asset’i tutarsa diye)
-  // İstersen kaldırabilirsin ama prod’da işe yarıyor.
-  const logoSrc = "/logo.png?v=1";
-
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        {/* LOGO */}
         <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
           {logoOk ? (
             <img
-              src={logoSrc}
+              src={LOGO_URL}
               alt="AceHub"
-              className="h-8 w-8 object-contain select-none"
+              className="h-9 w-9 rounded-xl object-contain select-none ring-1 ring-white/10 bg-white/5"
               draggable="false"
               onError={() => setLogoOk(false)}
             />
           ) : (
-            <div
-              className="grid h-8 w-8 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15"
-              aria-label="AceHub"
-            >
-              <span className="text-xs font-semibold text-white">AH</span>
-            </div>
+            <AceHubIcon />
           )}
 
           <span className="text-base font-semibold tracking-tight">AceHub</span>
         </Link>
 
-        {/* DESKTOP NAV */}
         <nav className="hidden items-center gap-6 text-sm text-slate-200 md:flex">
           {nav.map((item) => {
             const isActive = item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
             return (
-              <Link key={item.href} href={item.href} className={cls("hover:text-white", isActive && "text-white")}>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cls("hover:text-white", isActive && "text-white")}
+              >
                 {item.label}
               </Link>
             );
           })}
         </nav>
 
-        {/* ACTIONS */}
         <div className="flex items-center gap-2">
           <a
             href="https://discord.gg/Pq9MhPE7ak"
@@ -90,8 +121,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
-      <div id="mobile-menu" className={cls("border-t border-white/10 bg-slate-950/90 md:hidden", !open && "hidden")}>
+      <div
+        id="mobile-menu"
+        className={cls("border-t border-white/10 bg-slate-950/90 md:hidden", !open && "hidden")}
+      >
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="grid gap-2 text-sm text-slate-200">
             {nav.map((item) => {
