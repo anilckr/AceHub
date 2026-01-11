@@ -1,11 +1,68 @@
 export default function ReferanslarPage() {
   const reviews = [
-    { name: "z4xanil", text: "Kurulum süreci netti. Özellikle log ve ticket akışı çok iyi.", server: "AceHub Community" },
-    { name: "Mert", text: "Anti-raid ayarları sayesinde spam ve raid problemi azaldı.", server: "NightShift TR" },
-    { name: "Ece", text: "Paket içeriği anlaşılır. Destek ekibi hızlı dönüş yaptı.", server: "Aurora Hub" },
-    { name: "Kerem", text: "Roller/kanallar şablonları işimi kolaylaştırdı.", server: "PixelTown" },
-    { name: "Deniz", text: "Stabil çalışıyor; ayarları çok pratik.", server: "Vortex TR" },
-    { name: "Selin", text: "Teslim sonrası destek güzel, hızlı çözdüler.", server: "Nova Guild" },
+[
+  {
+    name: "Emre",
+    text: "Kurulum süreci beklediğimden hızlıydı. Loglama ve ticket sistemi gerçekten iş görüyor.",
+    server: "AceHub Community",
+  },
+  {
+    name: "Mert",
+    text: "Anti-raid ayarlarını yaptıktan sonra spam ciddi şekilde azaldı. Kafam rahat.",
+    server: "NightShift TR",
+  },
+  {
+    name: "Ece",
+    text: "Paket içeriği net anlatılmış. Destek ekibi sorularıma kısa sürede döndü.",
+    server: "Aurora Hub",
+  },
+  {
+    name: "Kerem",
+    text: "Rol ve kanal şablonları sayesinde sıfırdan kurmakla uğraşmadım.",
+    server: "PixelTown",
+  },
+  {
+    name: "Deniz",
+    text: "Uzun süredir kullanıyoruz, stabilite konusunda hiç sorun yaşamadık.",
+    server: "Vortex TR",
+  },
+  {
+    name: "Selin",
+    text: "Teslimden sonra da ilgilenmeleri hoşuma gitti. Sorun hemen çözüldü.",
+    server: "Nova Guild",
+  },
+  {
+    name: "Burak",
+    text: "Kurulumdan sonra sunucu daha düzenli ve yönetilebilir hale geldi.",
+    server: "Shadow Realm",
+  },
+  {
+    name: "Ayşe",
+    text: "Özellikle moderasyon tarafı çok pratik. Yeni ekip arkadaşları bile zorlanmadı.",
+    server: "Luna TR",
+  },
+  {
+    name: "Onur",
+    text: "Fiyat/performans olarak gayet iyi. Beklentimi karşıladı.",
+    server: "Hexagon Hub",
+  },
+  {
+    name: "Zeynep",
+    text: "Dokümantasyon sade ve anlaşılır. Ne nerede hemen bulabiliyorsun.",
+    server: "Echo Community",
+  },
+  {
+    name: "Can",
+    text: "Raid sırasında sistemin otomatik tepki vermesi baya işimize yaradı.",
+    server: "IronCore",
+  },
+  {
+    name: "Furkan",
+    text: "Küçük ayarlamalar için bile destekten hızlı dönüş aldım.",
+    server: "Orbit TR",
+  },
+]
+
   ];
 
   return (
