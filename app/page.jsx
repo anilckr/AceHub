@@ -119,7 +119,7 @@ export default function HomePage() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {[
-            { name: "Emre", text: "Kurulum çok hızlıydı, ticket ve log sistemi tam istediğim gibi oldu.", server: "AceHub Community" },
+            { name: "z4xanil", text: "Kurulum çok hızlıydı, ticket ve log sistemi tam istediğim gibi oldu.", server: "AceHub Community" },
             { name: "Mert", text: "Moderasyon ayarları stabil. Anti-raid ve log tarafı çok iyi.", server: "NightShift TR" },
             { name: "Esra", text: "Destek ekibi hızlı dönüş yaptı. Paket içeriği net ve kullanışlı.", server: "Aurora Hub" },
           ].map((r) => (
