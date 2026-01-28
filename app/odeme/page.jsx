@@ -1,14 +1,13 @@
-"use client";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import PayClient from "./PayClient";
 
-export default function PayClient() {
-  const searchParams = useSearchParams();
-  const status = searchParams.get("status");
-
+export default function Page() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      Ödeme durumu: {status ?? "Bekleniyor"}
-    </div>
+    <Suspense fallback={<div className="max-w-3xl mx-auto px-4 py-10">Yükleniyor...</div>}>
+      <PayClient />
+    </Suspense>
   );
 }
