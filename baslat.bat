@@ -1,31 +1,21 @@
 @echo off
-echo ===============================
-echo AceHub Auto Deploy Baslatiliyor
-echo ===============================
+cd /d "%~dp0"
 
-REM Proje dizinine git (bat dosyasi ayni klasordeyse gerek yok)
-cd /d %~dp0
+echo =====================================
+echo  AceHub - Vercel'e Gonderiliyor
+echo =====================================
 
-echo.
-echo Git status kontrol ediliyor...
-git status
+git add -A
 
-echo.
-echo Degisiklikler ekleniyor...
-git add .
+git commit -m "update: register page fix"
+if errorlevel 1 (
+  echo Degisiklik yok, commit atlanıyor...
+)
 
-echo.
-echo Commit aliniyor...
-git commit -m "auto: ui update"
-
-echo.
-echo GitHub'a push atiliyor...
 git push
 
 echo.
-echo ===============================
-echo Islem tamamlandi.
-echo Vercel otomatik deploy baslatmistir.
-echo ===============================
-
+echo TAMAM ✅ Kod GitHub'a gitti.
+echo Vercel otomatik deploy baslatti.
+echo.
 pause
