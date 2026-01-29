@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-"scripts": {
-  "dev": "next dev",
-  "build": "prisma migrate deploy && next build",
-  "start": "next start",
-  "lint": "next lint",
-  "prisma:generate": "prisma generate",
-  "prisma:migrate": "prisma migrate dev",
-  "prisma:studio": "prisma studio",
-  "seed": "node prisma/seed.mjs",
-  "postinstall": "prisma generate"
-},
+  "scripts": {
+    "dev": "next dev",
+    "build": "npx prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "seed": "node prisma/seed.mjs",
+    "postinstall": "prisma generate"
+  },
   "dependencies": {
     "@prisma/client": "^6.19.2",
     "bcryptjs": "^2.4.3",
