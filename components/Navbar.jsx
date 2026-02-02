@@ -19,9 +19,6 @@ function cls(...a) {
   return a.filter(Boolean).join(" ");
 }
 
-const LOGO_URL =
-  "https://cdn.discordapp.com/attachments/1211412024987357294/1459922145210531991/image.png?ex=696509f3&is=6963b873&hm=04b5b799dd650e808862f283e2de2b904daf204b6a9ffcf77f1e068cf7beb480&"; // BURAYA KENDİ DİREKT LOGO LİNKİNİ KOY
-
 function AceHubIcon() {
   return (
     <div className="grid h-9 w-9 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
@@ -34,7 +31,14 @@ function AceHubIcon() {
         role="img"
       >
         <defs>
-          <linearGradient id="acehubGrad" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="acehubGrad"
+            x1="10"
+            y1="8"
+            x2="54"
+            y2="56"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stopColor="#6D5EF6" />
             <stop offset="1" stopColor="#41E0B9" />
           </linearGradient>
@@ -62,6 +66,8 @@ export default function Navbar() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const [open, setOpen] = useState(false);
+
+  // ✅ Sadece public/img.png dene. Bozulursa kırık ikon göstermeden SVG'ye geç.
   const [logoOk, setLogoOk] = useState(true);
 
   const activeHref = useMemo(() => {
@@ -72,25 +78,35 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          onClick={() => setOpen(false)}
+        >
+          {/* ✅ Logo alanı: img.png varsa göster, yoksa SVG */}
           {logoOk ? (
-            <img
-              src={LOGO_URL}
-              alt="AceHub"
-              className="h-9 w-9 rounded-xl object-contain select-none ring-1 ring-white/10 bg-white/5"
-              draggable="false"
-              onError={() => setLogoOk(false)}
-            />
+<img
+  src="/img.png"
+  alt="AceHub"
+  className="h-7 w-auto object-cover scale-150"
+  draggable={false}
+/>
           ) : (
             <AceHubIcon />
           )}
 
-          <span className="text-base font-semibold tracking-tight">AceHub</span>
+          <span className="text-base font-semibold tracking-tight">
+            AceHub
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-slate-200 md:flex">
           {nav.map((item) => {
-            const isActive = item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
+            const isActive =
+              item.href === "/"
+                ? activeHref === "/"
+                : activeHref.startsWith(item.href);
+
             return (
               <Link
                 key={item.href}
@@ -113,14 +129,21 @@ export default function Navbar() {
             </button>
           ) : (
             <div className="hidden md:flex items-center gap-2">
-              <Link className="inline-flex items-center justify-center rounded-xl bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/15" href="/login">
+              <Link
+                className="inline-flex items-center justify-center rounded-xl bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/15"
+                href="/login"
+              >
                 Giriş
               </Link>
-              <Link className="inline-flex items-center justify-center rounded-xl bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/15" href="/kayit">
+              <Link
+                className="inline-flex items-center justify-center rounded-xl bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/15"
+                href="/kayit"
+              >
                 Kayıt
               </Link>
             </div>
           )}
+
           <a
             href="https://discord.gg/Pq9MhPE7ak"
             target="_blank"
@@ -143,12 +166,19 @@ export default function Navbar() {
 
       <div
         id="mobile-menu"
-        className={cls("border-t border-white/10 bg-slate-950/90 md:hidden", !open && "hidden")}
+        className={cls(
+          "border-t border-white/10 bg-slate-950/90 md:hidden",
+          !open && "hidden"
+        )}
       >
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="grid gap-2 text-sm text-slate-200">
             {nav.map((item) => {
-              const isActive = item.href === "/" ? activeHref === "/" : activeHref.startsWith(item.href);
+              const isActive =
+                item.href === "/"
+                  ? activeHref === "/"
+                  : activeHref.startsWith(item.href);
+
               return (
                 <Link
                   key={item.href}
@@ -163,6 +193,7 @@ export default function Navbar() {
                 </Link>
               );
             })}
+
             <div className="mt-2 grid gap-2">
               {session?.user ? (
                 <button
