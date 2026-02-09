@@ -1,5 +1,5 @@
 "use client";
-
+const PAYMENTS_ENABLED = false;
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { PRODUCTS, formatTRY } from "../../lib/products";
@@ -98,20 +98,21 @@ export default function UrunlerPage() {
                 </ul>
 
                 {/* Satın Al */}
-                <button
-                  className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-100"
-                  onClick={() =>
-                    router.push(
-                      `/odeme?sku=${encodeURIComponent(p.sku)}${
-                        selectedOption
-                          ? `&days=${selectedOption.durationDays}`
-                          : ""
-                      }`
-                    )
-                  }
-                >
-                  Satın Al
-                </button>
+{PAYMENTS_ENABLED && (
+  <button
+    className="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+    onClick={() =>
+      router.push(
+        `/odeme?sku=${encodeURIComponent(p.sku)}${
+          selectedOption ? `&days=${selectedOption.durationDays}` : ""
+        }`
+      )
+    }
+  >
+    Satın Al
+  </button>
+)}
+
               </article>
             );
           })}
