@@ -1,6 +1,5 @@
 export default function ReferanslarPage() {
   const reviews = [
-    { name: "z4xanil", text: "Kurulum süreci netti. Özellikle log ve ticket akışı çok iyi.", server: "AceHub Community" },
     { name: "Mert", text: "Anti-raid ayarları sayesinde spam ve raid problemi azaldı.", server: "NightShift TR" },
     { name: "Ece", text: "Paket içeriği anlaşılır. Destek ekibi hızlı dönüş yaptı.", server: "Aurora Hub" },
     { name: "Kerem", text: "Roller/kanallar şablonları işimi kolaylaştırdı.", server: "PixelTown" },
@@ -13,7 +12,7 @@ export default function ReferanslarPage() {
       <section className="mx-auto max-w-6xl px-4 py-10 md:py-16">
         <h1 className="text-3xl font-bold tracking-tight md:text-5xl">Referanslar</h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base">
-          Doğrulanmış müşteri yorumları için örnek bir vitrin. Gerçek yorumları buraya ekleyebilirsin.
+          Doğrulanmış müşteri yorumları için örnek bir alan.
         </p>
 
         <div className="mt-8 grid gap-4 md:grid-cols-3">
